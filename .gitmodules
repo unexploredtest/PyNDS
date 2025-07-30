@@ -1,0 +1,4 @@
+[submodule "externals/NooDS"]
+	path = externals/NooDS
+	url = https://github.com/unexploredtest/NooDS.git
+	branch = pynds
