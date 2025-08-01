@@ -45,6 +45,12 @@ class PyNDS:
             return (self._convert_img_to_np(top_frame, width, height),
                 self._convert_img_to_np(bot_frame, width, height))
 
+    def save_state_to_file(self, path: str) -> None:
+        self._nds.save_state(path)
+
+    def load_state_from_file(self, path: str) -> None:
+        self._nds.load_state(path)
+
     def set_touch_input(self, x: int, y: int) -> None:
         self._nds.set_touch_input(x, y)
 

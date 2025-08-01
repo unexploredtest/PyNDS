@@ -72,6 +72,16 @@ std::vector<uint32_t> Nds::getBotNdsFrame() {
     }
 }
 
+void Nds::saveState(std::string path) {
+    m_core->saveStates.setPath(path, m_isGba);
+    m_core->saveStates.saveState();
+}
+
+void Nds::loadState(std::string path) {
+    m_core->saveStates.setPath(path, m_isGba);
+    m_core->saveStates.loadState();
+}
+
 void Nds::setTouchInput(int x, int y) {
     m_core->spi.setTouch(x, y);
 }

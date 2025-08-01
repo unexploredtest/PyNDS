@@ -19,6 +19,10 @@ class Nds {
         std::vector<uint32_t> getTopNdsFrame();
         std::vector<uint32_t> getBotNdsFrame();
 
+        // Savestate methods
+        void saveState(std::string path);
+        void loadState(std::string path);
+
         // Touch input methods
         void setTouchInput(int x, int y);
         void clearTouchInput();

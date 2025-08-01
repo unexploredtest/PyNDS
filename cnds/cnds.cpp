@@ -19,6 +19,8 @@ NB_MODULE(cnds, m) {
         .def("get_bot_nds_frame", &Nds::getBotNdsFrame)
         .def("set_touch_input", &Nds::setTouchInput)
         .def("clear_touch_input", &Nds::clearTouchInput)
+        .def("save_state", &Nds::saveState)
+        .def("load_state", &Nds::loadState)
         .def("touch_input", &Nds::touchInput)
         .def("release_touch_input", &Nds::releaseTouchInput)
         .def("press_key", &Nds::pressKey)
