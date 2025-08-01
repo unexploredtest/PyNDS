@@ -16,6 +16,12 @@ jobs:
         with:
           submodules: 'recursive'
 
+      # There's a bug in which if PyNDS is built with gcc on release mode
+      # we get an undefined symbol error, so we build with clang for now
+      - name: Install Clang
+        if: runner.os == 'Linux'
+        run: sudo apt install clang
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -28,6 +34,10 @@ jobs:
 
       - name: Build Wheel
         run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            export CC=clang
+            export CXX=clang++
+          fi
           python setup.py bdist_wheel
 
       - name: Upload Wheel
