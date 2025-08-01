@@ -1,3 +1,4 @@
+from typing import Union, Tuple, List
 import numpy as np
 
 import cnds
@@ -18,19 +19,19 @@ KEY_MAP = {
 }
 
 class PyNDS:
-    def __init__(self, path: str, is_gba=None) -> None:
-        if(is_gba == None):
+    def __init__(self, path: str, auto_detect: bool = True, is_gba: bool = False) -> None:
+        if(auto_detect):
             is_gba = path.endswith(".gba")
 
         self.is_gba = is_gba
         self._nds = cnds.Nds(path, is_gba)
 
-    def tick(self, count=1):
+    def tick(self, count: int = 1) -> None:
         for i in range(count):
             self._nds.run_until_frame()
             self._nds.get_frame()
 
-    def get_frame(self):
+    def get_frame(self) -> Union[Tuple[np.ndarray, np.ndarray], np.ndarray]:
         if(self.is_gba):
             width = 240
             height = 160
@@ -44,26 +45,26 @@ class PyNDS:
             return (self._convert_img_to_np(top_frame, width, height),
                 self._convert_img_to_np(bot_frame, width, height))
 
-    def set_touch_input(self, x, y):
+    def set_touch_input(self, x: int, y: int) -> None:
         self._nds.set_touch_input(x, y)
 
-    def clear_touch_input(self):
+    def clear_touch_input(self) -> None:
         self._nds.clear_touch_input()
 
-    def touch_input(self):
+    def touch_input(self) -> None:
         self._nds.touch_input()
 
-    def release_touch_input(self):
+    def release_touch_input(self) -> None:
         self._nds.release_touch_input()
 
-    def press_key(self, key):
+    def press_key(self, key: str) -> None:
         self._nds.press_key(KEY_MAP[key])
 
-    def release_key(self, key):
+    def release_key(self, key: str) -> None:
         self._nds.release_key(KEY_MAP[key])
 
     @staticmethod
-    def _convert_img_to_np(frame, width, height):
+    def _convert_img_to_np(frame: List[int], width: int, height: int) -> np.ndarray:
         rgb_array = np.array(frame, dtype=np.uint32)
         
         r = (rgb_array) & 0xFF
