@@ -23,7 +23,7 @@ void Nds::runTask() {
 }
 
 void Nds::runUntilFrame() {
-    while(!m_core->gpu.getBufferSize() > 0) {
+    while(!m_core->gpu.getBufferSize()) {
         m_core->runCore();
     }
 }
