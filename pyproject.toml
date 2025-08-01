@@ -1,0 +1,28 @@
+[project]
+name = "pynds"
+version = "0.1"
+description = "Python interface for emulated Nintendo DS"
+requires-python = ">=3.9"
+license= {file = "LICENSE"}
+authors = [{ name = "unexploredtest", email = "unexploredtest@tutanota.com" }]
+classifiers=[
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+dependencies = [
+    "numpy"
+]
+
+dynamic = ["readme"]
+
+[project.urls]
+Homepage = "https://github.com/unexploredtest/PyNDS"
+
+[build-system]
+requires = ["setuptools", "numpy"]
+build-backend = "setuptools.build_meta"

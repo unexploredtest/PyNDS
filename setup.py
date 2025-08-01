@@ -91,6 +91,7 @@ version = '0.1'
 
 setup(name='pynds',
       packages=find_packages(),
+      install_requires=['numpy'],
       version=version,
       description='Python bindings for NooDS',
       author='unexploredtest',
