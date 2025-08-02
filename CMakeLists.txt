@@ -18,7 +18,7 @@ find_package(Python 3.8 COMPONENTS Interpreter ${DEV_MODULE} REQUIRED)
 add_subdirectory(externals/nanobind)
 add_subdirectory(externals/NooDS)
 
-nanobind_add_module(cnds cnds/cnds.cpp cnds/nds.cpp cnds/config.cpp)
+nanobind_add_module(cnds cnds/cnds.cpp cnds/nds.cpp cnds/nds_input.cpp cnds/nds_memory.cpp cnds/config.cpp)
 target_include_directories(cnds PRIVATE cnds/include)
 target_link_libraries(cnds PRIVATE NooDS)
 
