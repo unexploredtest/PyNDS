@@ -33,6 +33,38 @@ class Nds {
         void pressKey(int key);
         void releaseKey(int key);
 
+        // Read ram methods
+        uint8_t readRamu8(uint32_t address);
+        uint16_t readRamu16(uint32_t address);
+        uint32_t readRamu32(uint32_t address);
+        uint64_t readRamu64(uint32_t address);
+
+        int8_t readRami8(uint32_t address);
+        int16_t readRami16(uint32_t address);
+        int32_t readRami32(uint32_t address);
+        int64_t readRami64(uint32_t address);
+
+        float readRamf32(uint32_t address);
+        double readRamf64(uint32_t address);
+
+        std::vector<uint8_t> readMap(uint32_t sAddress, uint32_t eAddress);
+
+        // Write ram methods
+        void writeRamu8(uint32_t address, uint8_t value);
+        void writeRamu16(uint32_t address, uint16_t value);
+        void writeRamu32(uint32_t address, uint32_t value);
+        void writeRamu64(uint32_t address, uint64_t value);
+
+        void writeRami8(uint32_t address, int8_t value);
+        void writeRami16(uint32_t address, int16_t value);
+        void writeRami32(uint32_t address, int32_t value);
+        void writeRami64(uint32_t address, int64_t value);
+
+        void writeRamf32(uint32_t address, float value);
+        void writeRamf64(uint32_t address, double value);
+
+        void writeMap(uint32_t sAddress, uint32_t size, const std::vector<uint8_t>& buffer);
+
     private:
         static const uint16_t GBA_WIDTH = 240;
         static const uint16_t GBA_HEIGHT = 160;
