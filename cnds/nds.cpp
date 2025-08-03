@@ -34,8 +34,9 @@ bool Nds::getFrame() {
 }
 
 std::vector<uint32_t> Nds::getGbaFrame() {
+    bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(m_isGba) {
-        const uint32_t size = GBA_WIDTH*GBA_HEIGHT;
+        const uint32_t size = (GBA_WIDTH * GBA_HEIGHT) << (2 * shift);
 
         std::vector<uint32_t> frame(size);
         std::copy(m_framebuffer, m_framebuffer + size, frame.begin());
@@ -47,8 +48,9 @@ std::vector<uint32_t> Nds::getGbaFrame() {
 }
 
 std::vector<uint32_t> Nds::getTopNdsFrame() {
+    bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(!m_isGba) {
-        const uint32_t size = NDS_WIDTH*NDS_HEIGHT;
+        const uint32_t size = (NDS_WIDTH * NDS_HEIGHT) << (2 * shift);
 
         std::vector<uint32_t> frame(size);
         std::copy(m_framebuffer, m_framebuffer + size, frame.begin());
@@ -60,8 +62,9 @@ std::vector<uint32_t> Nds::getTopNdsFrame() {
 }
 
 std::vector<uint32_t> Nds::getBotNdsFrame() {
+    bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(!m_isGba) {
-        const uint32_t size = NDS_WIDTH*NDS_HEIGHT;
+        const uint32_t size = (NDS_WIDTH * NDS_HEIGHT) << (2 * shift);
 
         std::vector<uint32_t> frame(size);
         std::copy(&m_framebuffer[size], &m_framebuffer[size] + size, frame.begin());

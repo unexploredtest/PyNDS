@@ -4,6 +4,7 @@ import numpy as np
 import cnds
 from .memory import Memory
 from .button import Button
+from .config import config
 
 
 class PyNDS:
@@ -22,14 +23,19 @@ class PyNDS:
             self._nds.get_frame()
 
     def get_frame(self) -> Union[Tuple[np.ndarray, np.ndarray], np.ndarray]:
+        if(config.get_high_res_3d() or config.get_screen_filter() == 1):
+            shift = 1
+        else:
+            shift = 0
+
         if(self.is_gba):
-            width = 240
-            height = 160
+            width = 240 << shift
+            height = 160 << shift
             frame = self._nds.get_gba_frame()
             return self._convert_img_to_np(frame, width, height)
         else:
-            width = 256
-            height = 192
+            width = 256 << shift
+            height = 192 << shift
             top_frame = self._nds.get_top_nds_frame()
             bot_frame = self._nds.get_bot_nds_frame()
             return (self._convert_img_to_np(top_frame, width, height),
