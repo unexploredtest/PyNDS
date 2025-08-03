@@ -33,33 +33,37 @@ bool Nds::getFrame() {
     return isFrame;
 }
 
-nb::ndarray<nb::numpy, uint32_t> Nds::getGbaFrame() {
+nb::ndarray<nb::numpy, uint8_t> Nds::getGbaFrame() {
     bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(m_isGba) {
-        const uint32_t size = (GBA_WIDTH * GBA_HEIGHT) << (2 * shift);
-        return nb::ndarray<nb::numpy, uint32_t>((void*)m_framebuffer, {size});
+        const uint32_t width = GBA_WIDTH << shift;
+        const uint32_t height = GBA_HEIGHT << shift;
+        return nb::ndarray<nb::numpy, uint8_t>((void*)m_framebuffer, {height, width, 4});
     } else {
-        return nb::ndarray<nb::numpy, uint32_t>();
+        return nb::ndarray<nb::numpy, uint8_t>();
     }
 }
 
-nb::ndarray<nb::numpy, uint32_t> Nds::getTopNdsFrame() {
+nb::ndarray<nb::numpy, uint8_t> Nds::getTopNdsFrame() {
     bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(!m_isGba) {
-        const uint32_t size = (NDS_WIDTH * NDS_HEIGHT) << (2 * shift);
-        return nb::ndarray<nb::numpy, uint32_t>((void*)m_framebuffer, {size});
+        const uint32_t width = NDS_WIDTH << shift;
+        const uint32_t height = NDS_HEIGHT << shift;
+        return nb::ndarray<nb::numpy, uint8_t>((void*)m_framebuffer, {height, width, 4});
     } else {
-        return nb::ndarray<nb::numpy, uint32_t>();
+        return nb::ndarray<nb::numpy, uint8_t>();
     }
 }
 
-nb::ndarray<nb::numpy, uint32_t> Nds::getBotNdsFrame() {
+nb::ndarray<nb::numpy, uint8_t> Nds::getBotNdsFrame() {
     bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(!m_isGba) {
         const uint32_t size = (NDS_WIDTH * NDS_HEIGHT) << (2 * shift);
-        return nb::ndarray<nb::numpy, uint32_t>((void*)(m_framebuffer + size), {size});
+        const uint32_t width = NDS_WIDTH << shift;
+        const uint32_t height = NDS_HEIGHT << shift;
+        return nb::ndarray<nb::numpy, uint8_t>((void*)(m_framebuffer + size), {height, width, 4});
     } else {
-        return nb::ndarray<nb::numpy, uint32_t>();
+        return nb::ndarray<nb::numpy, uint8_t>();
     }
 }
 

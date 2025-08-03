@@ -17,9 +17,9 @@ class Nds {
         bool getFrame();
 
         // Grab emulator frame methods
-        nb::ndarray<nb::numpy, uint32_t> getGbaFrame();
-        nb::ndarray<nb::numpy, uint32_t> getTopNdsFrame();
-        nb::ndarray<nb::numpy, uint32_t> getBotNdsFrame();
+        nb::ndarray<nb::numpy, uint8_t> getGbaFrame();
+        nb::ndarray<nb::numpy, uint8_t> getTopNdsFrame();
+        nb::ndarray<nb::numpy, uint8_t> getBotNdsFrame();
 
         // Savestate methods
         void saveState(std::string path);
@@ -73,7 +73,7 @@ class Nds {
         static const uint16_t NDS_WIDTH = 256;
         static const uint16_t NDS_HEIGHT = 192;
 
-        uint32_t m_framebuffer[NDS_WIDTH * NDS_HEIGHT * 8];
+        uint32_t m_framebuffer[NDS_WIDTH * NDS_HEIGHT * 16];
         Core* m_core;
         bool m_isGba;
 };
