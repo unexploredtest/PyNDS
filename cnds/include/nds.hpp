@@ -1,9 +1,11 @@
 #pragma once
 
 #include <vector>
+#include <nanobind/ndarray.h>
 
 #include "noods.h"
 
+namespace nb = nanobind;
 
 class Nds {
     public:
@@ -15,9 +17,9 @@ class Nds {
         bool getFrame();
 
         // Grab emulator frame methods
-        std::vector<uint32_t> getGbaFrame();
-        std::vector<uint32_t> getTopNdsFrame();
-        std::vector<uint32_t> getBotNdsFrame();
+        nb::ndarray<nb::numpy, uint32_t> getGbaFrame();
+        nb::ndarray<nb::numpy, uint32_t> getTopNdsFrame();
+        nb::ndarray<nb::numpy, uint32_t> getBotNdsFrame();
 
         // Savestate methods
         void saveState(std::string path);

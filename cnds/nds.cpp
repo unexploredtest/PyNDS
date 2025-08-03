@@ -33,45 +33,33 @@ bool Nds::getFrame() {
     return isFrame;
 }
 
-std::vector<uint32_t> Nds::getGbaFrame() {
+nb::ndarray<nb::numpy, uint32_t> Nds::getGbaFrame() {
     bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(m_isGba) {
         const uint32_t size = (GBA_WIDTH * GBA_HEIGHT) << (2 * shift);
-
-        std::vector<uint32_t> frame(size);
-        std::copy(m_framebuffer, m_framebuffer + size, frame.begin());
-
-        return std::move(frame);
+        return nb::ndarray<nb::numpy, uint32_t>((void*)m_framebuffer, {size});
     } else {
-        return std::vector<uint32_t>(0);
+        return nb::ndarray<nb::numpy, uint32_t>();
     }
 }
 
-std::vector<uint32_t> Nds::getTopNdsFrame() {
+nb::ndarray<nb::numpy, uint32_t> Nds::getTopNdsFrame() {
     bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(!m_isGba) {
         const uint32_t size = (NDS_WIDTH * NDS_HEIGHT) << (2 * shift);
-
-        std::vector<uint32_t> frame(size);
-        std::copy(m_framebuffer, m_framebuffer + size, frame.begin());
-
-        return std::move(frame);
+        return nb::ndarray<nb::numpy, uint32_t>((void*)m_framebuffer, {size});
     } else {
-        return std::vector<uint32_t>(0);
+        return nb::ndarray<nb::numpy, uint32_t>();
     }
 }
 
-std::vector<uint32_t> Nds::getBotNdsFrame() {
+nb::ndarray<nb::numpy, uint32_t> Nds::getBotNdsFrame() {
     bool shift = (Settings::highRes3D || Settings::screenFilter == 1);
     if(!m_isGba) {
         const uint32_t size = (NDS_WIDTH * NDS_HEIGHT) << (2 * shift);
-
-        std::vector<uint32_t> frame(size);
-        std::copy(&m_framebuffer[size], &m_framebuffer[size] + size, frame.begin());
-
-        return std::move(frame);
+        return nb::ndarray<nb::numpy, uint32_t>((void*)(m_framebuffer + size), {size});
     } else {
-        return std::vector<uint32_t>(0);
+        return nb::ndarray<nb::numpy, uint32_t>();
     }
 }
 
