@@ -1,4 +1,4 @@
-#include <algorithm> 
+#include <algorithm>
 #include <iostream>
 
 #include "nds.hpp"
@@ -10,7 +10,7 @@ Nds::Nds(std::string filePath, bool isGba) {
     } else {
         m_core = new Core(filePath);
     }
-    
+
     m_isGba = isGba;
 }
 
@@ -76,4 +76,3 @@ void Nds::loadState(std::string path) {
     m_core->saveStates.setPath(path, m_isGba);
     m_core->saveStates.loadState();
 }
-

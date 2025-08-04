@@ -39,4 +39,3 @@ class PyNDS:
 
     def load_state_from_file(self, path: str) -> None:
         self._nds.load_state(path)
-

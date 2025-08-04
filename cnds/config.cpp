@@ -193,4 +193,3 @@ void Config::setBasePath(const std::string& basePath) {
 std::string Config::getBasePath() {
     return Settings::basePath;
 }
-
