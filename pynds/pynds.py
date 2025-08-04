@@ -9,7 +9,7 @@ from .config import config
 
 class PyNDS:
     def __init__(self, path: str, auto_detect: bool = True, is_gba: bool = False) -> None:
-        if(auto_detect):
+        if (auto_detect):
             is_gba = path.endswith(".gba")
 
         self.is_gba = is_gba
@@ -26,7 +26,7 @@ class PyNDS:
             self._nds.get_frame()
 
     def get_frame(self) -> Union[Tuple[np.ndarray, np.ndarray], np.ndarray]:
-        if(self.is_gba):
+        if (self.is_gba):
             frame = self._nds.get_gba_frame()
             return frame
         else:

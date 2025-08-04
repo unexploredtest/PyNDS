@@ -13,6 +13,7 @@ KEY_MAP = {
     'y': 11
 }
 
+
 class Button:
     def __init__(self, nds):
         self._nds = nds

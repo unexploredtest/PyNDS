@@ -36,7 +36,7 @@ class CMakeBuild(build_ext):
 
     def build_extensions(self):
         try:
-            out = subprocess.check_output(['cmake', '--version'])
+            subprocess.check_output(['cmake', '--version'])
         except OSError:
             raise RuntimeError('Cannot find CMake executable')
 
@@ -79,12 +79,12 @@ class CMakeBuild(build_ext):
 
             # Config and build the extension
             subprocess.check_call(['cmake', ext.cmake_lists_dir] + cmake_args,
-                                cwd=self.build_temp)
+                                  cwd=self.build_temp)
 
             # Build with multiple jobs
             num_jobs = os.cpu_count() or 1
             subprocess.check_call(['cmake', '--build', '.', '--config', cfg, '--parallel', str(num_jobs)],
-                                cwd=self.build_temp)
+                                  cwd=self.build_temp)
 
 
 version = '0.1'
@@ -109,4 +109,4 @@ setup(name='pynds',
           "Operating System :: Microsoft :: Windows",
           "Operating System :: POSIX :: Linux",
       ],
-)
+      )
