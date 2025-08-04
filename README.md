@@ -1,7 +1,7 @@
 ## PyNDS
-A python interface for NooDS, a Nintendo DS emulator.
+A Python interface for [NooDS](https://github.com/Hydr8gon/NooDS), a Nintendo DS emulator. Intended for reinforcement learning and bots.
 
-Inspired from PyBoy.
+Inspired by [PyBoy](https://github.com/Baekalfen/PyBoy).
 
 ### Example
 ```py
@@ -12,8 +12,6 @@ nds = pynds(rom_path)
 nds.tick() # Runs the emulator until we get a frame
 frame_top, frame_bottom = nds.get_frame() # Get the generated frame
 ```
-
-Disclaimer: The project is still in its initial stages, expect a lot of bugs. Changes to the API might occur.
 
 ### Install
 ```sh
@@ -27,3 +25,5 @@ cd PyNDS
 git submodule update --init --recursive
 python setup.py install
 ```
+
+**Disclaimer:** The project is still in its initial stages; expect a lot of bugs. Changes to the API may occur.
