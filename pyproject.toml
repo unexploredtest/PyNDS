@@ -15,7 +15,8 @@ classifiers=[
 ]
 
 dependencies = [
-    "numpy"
+    "numpy",
+    "pygame"
 ]
 
 dynamic = ["readme"]
