@@ -38,7 +38,7 @@ nb::ndarray<nb::numpy, uint8_t> Nds::getGbaFrame() {
     if(m_isGba) {
         const uint32_t width = GBA_WIDTH << shift;
         const uint32_t height = GBA_HEIGHT << shift;
-        return nb::ndarray<nb::numpy, uint8_t>((void*)m_framebuffer, {height, width, 4});
+        return nb::ndarray<nb::numpy, uint8_t>(reinterpret_cast<void*>(m_framebuffer), {height, width, 4});
     } else {
         return nb::ndarray<nb::numpy, uint8_t>();
     }
@@ -49,7 +49,7 @@ nb::ndarray<nb::numpy, uint8_t> Nds::getTopNdsFrame() {
     if(!m_isGba) {
         const uint32_t width = NDS_WIDTH << shift;
         const uint32_t height = NDS_HEIGHT << shift;
-        return nb::ndarray<nb::numpy, uint8_t>((void*)m_framebuffer, {height, width, 4});
+        return nb::ndarray<nb::numpy, uint8_t>(reinterpret_cast<void*>(m_framebuffer), {height, width, 4});
     } else {
         return nb::ndarray<nb::numpy, uint8_t>();
     }
@@ -61,7 +61,7 @@ nb::ndarray<nb::numpy, uint8_t> Nds::getBotNdsFrame() {
         const uint32_t size = (NDS_WIDTH * NDS_HEIGHT) << (2 * shift);
         const uint32_t width = NDS_WIDTH << shift;
         const uint32_t height = NDS_HEIGHT << shift;
-        return nb::ndarray<nb::numpy, uint8_t>((void*)(m_framebuffer + size), {height, width, 4});
+        return nb::ndarray<nb::numpy, uint8_t>(reinterpret_cast<void*>(m_framebuffer + size), {height, width, 4});
     } else {
         return nb::ndarray<nb::numpy, uint8_t>();
     }
