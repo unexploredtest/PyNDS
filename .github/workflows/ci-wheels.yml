@@ -25,6 +25,16 @@ jobs:
       with:
             submodules: 'recursive'
 
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: |
+            3.13
+            3.12
+            3.11
+            3.10
+            3.9
+
     - name: Build wheels
       uses: pypa/cibuildwheel@v3.0
       env:
