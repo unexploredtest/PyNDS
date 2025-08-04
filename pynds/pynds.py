@@ -1,10 +1,9 @@
-from typing import Union, Tuple, List
+from typing import Union, Tuple
 import numpy as np
 
 import cnds
 from .memory import Memory
 from .button import Button
-from .config import config
 
 
 class PyNDS:

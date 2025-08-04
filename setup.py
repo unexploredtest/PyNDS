@@ -5,7 +5,6 @@ import sys
 from pprint import pprint
 from setuptools import setup, Extension, find_packages
 from setuptools.command.build_ext import build_ext
-from pathlib import Path
 
 c_module_name = 'cnds'
 
