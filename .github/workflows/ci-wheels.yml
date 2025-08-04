@@ -1,5 +1,5 @@
 name: CI Wheels
-on: [release, workflow_dispatch]
+on: [release, workflow_dispatch, push]
 
 jobs:
   build-wheels:
@@ -25,23 +25,15 @@ jobs:
       with:
             submodules: 'recursive'
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: |
-            3.13
-            3.12
-            3.11
-            3.10
-            3.9
-
     - name: Build wheels
-      uses: pypa/cibuildwheel@v3.0
+      uses: pypa/cibuildwheel@352e01339f0a173aa2a3eb57f01492e341e83865  # v3.1.3
       env:
         CIBW_ARCHS: "${{ matrix.arch }}"
+        CIBW_SKIP: "cp314*"
 
     - name: Upload wheels
       uses: actions/upload-artifact@v4
       with:
         name: wheels-${{ matrix.runs-on }}-${{ matrix.arch }}
         path: ./wheelhouse/*.whl
+
