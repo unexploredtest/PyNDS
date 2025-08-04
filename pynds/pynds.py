@@ -4,6 +4,8 @@ import numpy as np
 import cnds
 from .memory import Memory
 from .button import Button
+from .window import Window
+from .config import config
 
 
 class PyNDS:
@@ -15,6 +17,7 @@ class PyNDS:
         self._nds = cnds.Nds(path, is_gba)
         self.button = Button(self._nds)
         self.memory = Memory(self._nds)
+        self.window = Window(self)
 
     def get_is_gba(self) -> bool:
         return self.is_gba
@@ -32,6 +35,19 @@ class PyNDS:
             top_frame = self._nds.get_top_nds_frame()
             bot_frame = self._nds.get_bot_nds_frame()
             return (top_frame, bot_frame)
+    
+    def get_frame_shape(self) -> Tuple[int, int]:
+        NDS = (192, 256)
+        GBA = (160, 240)
+        if(config.get_high_res_3d() or config.get_screen_filter() == 1):
+            scale = 2
+        else:
+            scale = 1
+
+        if (self.is_gba):
+            return (GBA[0]*scale, GBA[1]*scale, 4)
+        else:
+            return (NDS[0]*scale, NDS[1]*scale, 4)
 
     def save_state_to_file(self, path: str) -> None:
         self._nds.save_state(path)
