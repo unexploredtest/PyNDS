@@ -17,6 +17,9 @@ class PyNDS:
         self.button = Button(self._nds)
         self.memory = Memory(self._nds)
 
+    def get_is_gba(self) -> bool:
+        return self.is_gba
+
     def tick(self, count: int = 1) -> None:
         for i in range(count):
             self._nds.run_until_frame()
