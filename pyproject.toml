@@ -1,6 +1,6 @@
 [project]
 name = "pynds"
-version = "0.0.1"
+version = "0.0.2"
 description = "Python interface for emulated Nintendo DS"
 requires-python = ">=3.9"
 license= {file = "LICENSE"}
