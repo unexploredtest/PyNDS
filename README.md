@@ -26,4 +26,4 @@ git submodule update --init --recursive
 python setup.py install
 ```
 
-**Disclaimer:** The project is still in its initial stages; expect a lot of bugs. Changes to the API may occur.
+**Disclaimer:** The project is still in its initial stages; expect a lot of bugs. The API is subject to change.
