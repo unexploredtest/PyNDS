@@ -1,5 +1,5 @@
 name: CI Wheels
-on: [release, workflow_dispatch, push]
+on: [release, workflow_dispatch]
 
 jobs:
   build-wheels:
