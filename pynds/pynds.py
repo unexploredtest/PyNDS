@@ -1,3 +1,4 @@
+import os
 from typing import Union, Tuple
 import numpy as np
 
@@ -14,7 +15,10 @@ class PyNDS:
             is_gba = path.endswith(".gba")
 
         self.is_gba = is_gba
+
+        self.check_file_exist(path)
         self._nds = cnds.Nds(path, is_gba)
+
         self.button = Button(self._nds)
         self.memory = Memory(self._nds)
         self.window = Window(self)
@@ -63,7 +67,14 @@ class PyNDS:
             self.window.render()
 
     def save_state_to_file(self, path: str) -> None:
+        self.check_file_exist(path)
         self._nds.save_state(path)
 
     def load_state_from_file(self, path: str) -> None:
+        self.check_file_exist(path)
         self._nds.load_state(path)
+
+    @staticmethod
+    def check_file_exist(path: str) -> None:
+        if not os.path.isfile(path):
+            raise FileNotFoundError(f"File '{path}' does not exist.")
