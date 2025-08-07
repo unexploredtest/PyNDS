@@ -26,19 +26,19 @@ class Window:
 
             if (self.is_gba and self.running):
                 self.process_frame_gba()
-            elif(self.running):
+            elif (self.running):
                 self.process_frame_nds()
 
     def handle_events(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.close()
-    
+
             if event.type == pygame.MOUSEMOTION:
                 width, height = self.screen.get_size()
                 mid_height = height // 2
                 x, y = event.pos
-                if(y > mid_height):
+                if (y > mid_height):
                     scale_y = mid_height / 192
                     y -= mid_height
                     y = int(y / scale_y)
@@ -117,7 +117,7 @@ class Window:
         surface = pygame.image.frombuffer(frame, (frame.shape[0], frame.shape[1]), 'RGBA')
         surface = pygame.transform.scale(surface, (width, height))
 
-        self.screen.blit(surface, surface.get_rect(topleft = (0, 0)))
+        self.screen.blit(surface, surface.get_rect(topleft=(0, 0)))
         pygame.display.flip()
 
     def process_frame_nds(self):
@@ -132,11 +132,10 @@ class Window:
 
         surface = pygame.image.frombuffer(frame_top, (frame_top.shape[0], frame_top.shape[1]), 'RGBA')
         surface = pygame.transform.scale(surface, (width, height // 2))
-        self.screen.blit(surface, surface.get_rect(topleft = (0, 0)))
+        self.screen.blit(surface, surface.get_rect(topleft=(0, 0)))
 
         surface = pygame.image.frombuffer(frame_bot, (frame_bot.shape[0], frame_bot.shape[1]), 'RGBA')
         surface = pygame.transform.scale(surface, (width, height // 2))
-        self.screen.blit(surface, surface.get_rect(topleft = (0, height // 2)))
+        self.screen.blit(surface, surface.get_rect(topleft=(0, height // 2)))
 
         pygame.display.flip()
-
