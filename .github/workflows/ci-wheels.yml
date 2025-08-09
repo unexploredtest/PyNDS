@@ -18,6 +18,8 @@ jobs:
             arch: AMD64
           - runs-on: macos-15
             arch: arm64
+          - runs-on: macos-13
+            arch: x86_64
     runs-on: ${{ matrix.runs-on }}
 
     steps:
@@ -30,7 +32,6 @@ jobs:
       env:
         CIBW_ARCHS: "${{ matrix.arch }}"
         CIBW_SKIP: "cp314*"
-        CIBW_ARCHS_MACOS: "arm64 x86_64"
         CIBW_ENVIRONMENT_MACOS: 'MACOSX_DEPLOYMENT_TARGET=11.0'
 
     - name: Upload wheels
