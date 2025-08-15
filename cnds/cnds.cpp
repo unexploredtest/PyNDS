@@ -18,11 +18,14 @@ NB_MODULE(cnds, m) {
         .def("get_top_nds_frame", &Nds::getTopNdsFrame)
         .def("get_bot_nds_frame", &Nds::getBotNdsFrame)
 
+        // Save methods
+        .def("save_state", &Nds::saveState)
+        .def("load_state", &Nds::loadState)
+        .def("save_game", &Nds::saveGame)
+
         // Input methods
         .def("set_touch_input", &Nds::setTouchInput)
         .def("clear_touch_input", &Nds::clearTouchInput)
-        .def("save_state", &Nds::saveState)
-        .def("load_state", &Nds::loadState)
         .def("touch_input", &Nds::touchInput)
         .def("release_touch_input", &Nds::releaseTouchInput)
         .def("press_key", &Nds::pressKey)

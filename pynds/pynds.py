@@ -74,6 +74,9 @@ class PyNDS:
         self.check_file_exist(path)
         self._nds.load_state(path)
 
+    def write_save_file(self, path: str) -> None:
+        self._nds.save_game(path)
+
     @staticmethod
     def check_file_exist(path: str) -> None:
         if not os.path.isfile(path):
