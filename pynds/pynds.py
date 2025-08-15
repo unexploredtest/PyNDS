@@ -67,7 +67,6 @@ class PyNDS:
             self.window.render()
 
     def save_state_to_file(self, path: str) -> None:
-        self.check_file_exist(path)
         self._nds.save_state(path)
 
     def load_state_from_file(self, path: str) -> None:
