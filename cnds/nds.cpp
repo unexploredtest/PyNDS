@@ -79,12 +79,10 @@ void Nds::loadState(std::string path) {
     m_core->saveStates.loadState();
 }
 
-void Nds::saveGame(const std::string& path) {
+void Nds::saveGame(const std::string& path, bool alwaysSave) {
     if(m_isGba) {
-        m_core->cartridgeGba.setSavePath(path);
-        m_core->cartridgeGba.writeSave();
+        m_core->cartridgeGba.writeSaveToPath(path, alwaysSave);
     } else {
-        m_core->cartridgeNds.setSavePath(path);
-        m_core->cartridgeNds.writeSave();
+        m_core->cartridgeNds.writeSaveToPath(path, alwaysSave);
     }
 }

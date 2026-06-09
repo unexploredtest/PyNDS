@@ -26,7 +26,7 @@ class Nds {
         void loadState(std::string path);
 
         // Save game methods
-        void saveGame(const std::string& path);
+        void saveGame(const std::string& path, bool alwaysSave);
 
         // Touch input methods
         void setTouchInput(int x, int y);

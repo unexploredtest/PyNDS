@@ -15,6 +15,7 @@ class PyNDS:
             is_gba = path.endswith(".gba")
 
         self.is_gba = is_gba
+        self.save_path = save_path
 
         self.check_file_exist(path)
         self._nds = cnds.Nds(path, save_path, is_gba)
@@ -73,8 +74,12 @@ class PyNDS:
         self.check_file_exist(path)
         self._nds.load_state(path)
 
-    def write_save_file(self, path: str) -> None:
-        self._nds.save_game(path)
+    def set_save_path(self, path: str):
+        self.save_path = path
+
+    def write_save_file(self, path: str = "", always_save: bool = True) -> None:
+        path = self.save_path if path == "" else path
+        self._nds.save_game(path, always_save)
 
     @staticmethod
     def check_file_exist(path: str) -> None:
