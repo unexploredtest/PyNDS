@@ -1,14 +1,16 @@
 #include <algorithm>
+#include <fcntl.h>
 #include <iostream>
 
 #include "nds.hpp"
 
 
-Nds::Nds(std::string filePath, bool isGba) {
+Nds::Nds(std::string filePath, std::string savePath, bool isGba) {
+    int saveFd = savePath != "" ? open(savePath.c_str(), O_RDONLY) : -1;
     if(isGba) {
-        m_core = new Core("", filePath);
+        m_core = new Core("", filePath, 0, -1, -1, -1, saveFd);
     } else {
-        m_core = new Core(filePath);
+        m_core = new Core(filePath, "", 0, -1, -1, saveFd, -1);
     }
 
     m_isGba = isGba;

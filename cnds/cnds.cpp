@@ -10,7 +10,7 @@ namespace nb = nanobind;
 
 NB_MODULE(cnds, m) {
     nb::class_<Nds>(m, "Nds")
-        .def(nb::init<const std::string&, bool>())
+        .def(nb::init<const std::string&, const std::string&, bool>())
         .def("run_task", &Nds::runTask)
         .def("run_until_frame", &Nds::runUntilFrame)
         .def("get_frame", &Nds::getFrame)

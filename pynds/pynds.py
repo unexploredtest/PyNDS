@@ -10,14 +10,14 @@ from .config import config
 
 
 class PyNDS:
-    def __init__(self, path: str, auto_detect: bool = True, is_gba: bool = False) -> None:
+    def __init__(self, path: str, save_path: str = "", auto_detect: bool = True, is_gba: bool = False) -> None:
         if (auto_detect):
             is_gba = path.endswith(".gba")
 
         self.is_gba = is_gba
 
         self.check_file_exist(path)
-        self._nds = cnds.Nds(path, is_gba)
+        self._nds = cnds.Nds(path, save_path, is_gba)
 
         self.button = Button(self._nds)
         self.memory = Memory(self._nds)

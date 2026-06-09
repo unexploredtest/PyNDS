@@ -9,7 +9,7 @@ namespace nb = nanobind;
 
 class Nds {
     public:
-        Nds(std::string filePath, bool isGba);
+        Nds(std::string filePath, std::string savePath, bool isGba);
         ~Nds();
 
         void runTask();
