@@ -17,6 +17,7 @@ NB_MODULE(cnds, m) {
         .def("get_gba_frame", &Nds::getGbaFrame)
         .def("get_top_nds_frame", &Nds::getTopNdsFrame)
         .def("get_bot_nds_frame", &Nds::getBotNdsFrame)
+        .def("get_audio_samples", &Nds::getAudioSamples)
 
         // Save methods
         .def("save_state", &Nds::saveState)

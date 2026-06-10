@@ -1,5 +1,5 @@
-import pygame
 import numpy as np
+import pygame
 
 
 class Window:
@@ -10,11 +10,12 @@ class Window:
         self.running = False
 
     def init(self, width: int, height: int) -> None:
+        pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=512)
         pygame.init()
         self.screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
         pygame.display.set_caption("PyNDS")
-
         self.running = True
+        self._audio_buffer = np.zeros((0, 2), dtype=np.int16)  # continuous buffer
 
     def close(self) -> None:
         pygame.quit()
@@ -28,6 +29,9 @@ class Window:
                 self.process_frame_gba()
             elif (self.running):
                 self.process_frame_nds()
+
+            if (self.running):
+                self.process_audio()
 
     def handle_events(self) -> None:
         for event in pygame.event.get():
@@ -138,4 +142,33 @@ class Window:
         surface = pygame.transform.scale(surface, (width, height // 2))
         self.screen.blit(surface, surface.get_rect(topleft=(0, height // 2)))
 
+    def process_audio(self):
+        samples = self._pynds.get_audio(699)
+        if samples is not None and len(samples) > 0:
+            # Resample 32768 -> 44100
+            ratio = 44100 / 32768
+            new_len = int(len(samples) * ratio)
+            left = np.interp(
+                np.linspace(0, len(samples), new_len),
+                np.arange(len(samples)),
+                samples[:, 0].astype(np.float32)
+            ).astype(np.int16)
+            right = np.interp(
+                np.linspace(0, len(samples), new_len),
+                np.arange(len(samples)),
+                samples[:, 1].astype(np.float32)
+            ).astype(np.int16)
+            resampled = np.column_stack((left, right))
+            self._audio_buffer = np.concatenate((self._audio_buffer, resampled))
+
+        # Only play when we have enough buffered samples
+        CHUNK = 2048
+        while len(self._audio_buffer) >= CHUNK:
+            chunk = np.ascontiguousarray(self._audio_buffer[:CHUNK])
+            self._audio_buffer = self._audio_buffer[CHUNK:]
+            # Find a free channel or wait
+            ch = pygame.mixer.find_channel(False)
+            if ch is not None:
+                sound = pygame.sndarray.make_sound(chunk)
+                ch.play(sound)
         pygame.display.flip()

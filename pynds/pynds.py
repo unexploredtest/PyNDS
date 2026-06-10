@@ -54,6 +54,9 @@ class PyNDS:
         else:
             return (NDS[0]*scale, NDS[1]*scale, 4)
 
+    def get_audio(self, count: int = 699) -> np.ndarray:
+        return self._nds.get_audio_samples(count)
+
     def open_window(self, width: int = 800, height: int = 800) -> None:
         if (self.window.running):
             self.window.close()

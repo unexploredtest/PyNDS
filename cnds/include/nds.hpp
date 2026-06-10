@@ -21,6 +21,9 @@ class Nds {
         nb::ndarray<nb::numpy, uint8_t> getTopNdsFrame();
         nb::ndarray<nb::numpy, uint8_t> getBotNdsFrame();
 
+        // Audio methods
+        nb::ndarray<nb::numpy, int16_t> getAudioSamples(int count);
+
         // Savestate methods
         void saveState(std::string path);
         void loadState(std::string path);
