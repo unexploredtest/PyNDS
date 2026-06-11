@@ -23,6 +23,7 @@ class Nds {
 
         // Audio methods
         nb::ndarray<nb::numpy, int16_t> getAudioSamples(int count);
+        uint32_t getAudioBufferNumber();
 
         // Savestate methods
         void saveState(std::string path);

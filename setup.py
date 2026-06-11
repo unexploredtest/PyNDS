@@ -90,7 +90,7 @@ version = '0.0.3'
 
 setup(name='pynds',
       packages=find_packages(),
-      install_requires=['numpy', 'pygame'],
+      install_requires=['numpy', 'pygame', 'sounddevice'],
       version=version,
       description='Python bindings for NooDS',
       author='unexploredtest',

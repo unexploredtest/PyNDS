@@ -82,6 +82,10 @@ nb::ndarray<nb::numpy, int16_t> Nds::getAudioSamples(int count) {
     return nb::ndarray<nb::numpy, int16_t>(samples, {(size_t)count, 2}, owner);
 }
 
+uint32_t Nds::getAudioBufferNumber() {
+    return m_core->spu.getBufferNumber();
+}
+
 void Nds::saveState(std::string path) {
     m_core->saveStates.setPath(path, m_isGba);
     m_core->saveStates.saveState();
