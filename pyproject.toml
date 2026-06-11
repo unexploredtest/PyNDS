@@ -16,7 +16,8 @@ classifiers=[
 
 dependencies = [
     "numpy",
-    "pygame"
+    "pygame",
+    "sounddevice"
 ]
 
 dynamic = ["readme"]
