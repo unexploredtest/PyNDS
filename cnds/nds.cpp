@@ -69,6 +69,23 @@ nb::ndarray<nb::numpy, uint8_t> Nds::getBotNdsFrame() {
     }
 }
 
+nb::ndarray<nb::numpy, int16_t> Nds::getAudioSamples(int count) {
+    uint32_t* raw = m_core->spu.getSamples(count);
+    int16_t* samples = new int16_t[count * 2];
+    for (int i = 0; i < count; i++) {
+        samples[i * 2]     = (int16_t)(raw[i] & 0xFFFF);
+        samples[i * 2 + 1] = (int16_t)((raw[i] >> 16) & 0xFFFF);
+    }
+    nb::capsule owner(samples, [](void* p) noexcept {
+        delete[] (int16_t*)p;
+    });
+    return nb::ndarray<nb::numpy, int16_t>(samples, {(size_t)count, 2}, owner);
+}
+
+uint32_t Nds::getAudioBufferNumber() {
+    return m_core->spu.getBufferNumber();
+}
+
 void Nds::saveState(std::string path) {
     m_core->saveStates.setPath(path, m_isGba);
     m_core->saveStates.saveState();

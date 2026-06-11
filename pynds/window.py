@@ -1,5 +1,5 @@
-import pygame
 import numpy as np
+import pygame
 
 
 class Window:
@@ -13,7 +13,6 @@ class Window:
         pygame.init()
         self.screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
         pygame.display.set_caption("PyNDS")
-
         self.running = True
 
     def close(self) -> None:
@@ -137,5 +136,4 @@ class Window:
         surface = pygame.image.frombuffer(frame_bot, (frame_bot.shape[0], frame_bot.shape[1]), 'RGBA')
         surface = pygame.transform.scale(surface, (width, height // 2))
         self.screen.blit(surface, surface.get_rect(topleft=(0, height // 2)))
-
         pygame.display.flip()

@@ -6,6 +6,7 @@ import cnds
 from .memory import Memory
 from .button import Button
 from .window import Window
+from .audio import Audio
 from .config import config
 
 
@@ -23,6 +24,7 @@ class PyNDS:
         self.button = Button(self._nds)
         self.memory = Memory(self._nds)
         self.window = Window(self)
+        self.audio = Audio(self)
 
     def get_is_gba(self) -> bool:
         return self.is_gba
@@ -54,6 +56,12 @@ class PyNDS:
         else:
             return (NDS[0]*scale, NDS[1]*scale, 4)
 
+    def get_audio(self, count: int = 699) -> np.ndarray:
+        return self._nds.get_audio_samples(count)
+
+    def get_audio_buffer_number(self) -> int:
+        return self._nds.get_audio_buffer_number()
+
     def open_window(self, width: int = 800, height: int = 800) -> None:
         if (self.window.running):
             self.window.close()
@@ -62,6 +70,15 @@ class PyNDS:
 
     def close_window(self) -> None:
         self.window.close()
+
+    def open_audio(self) -> None:
+        if (self.audio.running):
+            self.audio.close()
+
+        self.audio.start()
+
+    def close_audio(self) -> None:
+        self.audio.close()
 
     def render(self) -> None:
         if (self.window.running):
