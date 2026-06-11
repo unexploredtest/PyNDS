@@ -86,7 +86,7 @@ class CMakeBuild(build_ext):
                                   cwd=self.build_temp)
 
 
-version = '0.0.3'
+version = '0.0.4'
 
 setup(name='pynds',
       packages=find_packages(),
