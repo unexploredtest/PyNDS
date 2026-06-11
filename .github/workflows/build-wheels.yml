@@ -29,7 +29,7 @@ jobs:
       uses: pypa/cibuildwheel@v4.0.0
       env:
         CIBW_ARCHS: "${{ matrix.arch }}"
-        CIBW_SKIP: 'cp3(?:14|15)*' # Skip python 3.14 and 3.15 as they are not supported
+        CIBW_SKIP: 'cp314* cp315*' # Skip python 3.14 and 3.15 as they are not supported
         CIBW_ENVIRONMENT_MACOS: 'MACOSX_DEPLOYMENT_TARGET=11.0'
 
     - name: Upload wheels
