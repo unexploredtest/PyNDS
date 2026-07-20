@@ -76,6 +76,7 @@ nb::ndarray<nb::numpy, int16_t> Nds::getAudioSamples(int count) {
         samples[i * 2]     = (int16_t)(raw[i] & 0xFFFF);
         samples[i * 2 + 1] = (int16_t)((raw[i] >> 16) & 0xFFFF);
     }
+    delete[] raw;
     nb::capsule owner(samples, [](void* p) noexcept {
         delete[] (int16_t*)p;
     });
