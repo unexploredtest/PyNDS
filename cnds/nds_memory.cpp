@@ -43,12 +43,12 @@ float Nds::readRamf32(bool arm7, uint32_t address, bool tcm) {
 //     return std::bit_cast<double>(m_core->memory.read<uint64_t>(arm7, address, tcm));
 // }
 
-std::vector<uint8_t> Nds::readMap(uint32_t sAddress, uint32_t eAddress) {
-    uint32_t size = eAddress - sAddress + 1;
-    std::vector<uint8_t> buffer(size);
-    m_core->memory.readMap(sAddress, eAddress, buffer.data());
-    return std::move(buffer);
-}
+// std::vector<uint8_t> Nds::readMap(uint32_t sAddress, uint32_t eAddress) {
+//     uint32_t size = eAddress - sAddress + 1;
+//     std::vector<uint8_t> buffer(size);
+//     m_core->memory.readMap(sAddress, eAddress, buffer.data());
+//     return std::move(buffer);
+// }
 
 // Write memory methods
 void Nds::writeRamu8(bool arm7, uint32_t address, uint8_t value, bool tcm) {
@@ -91,6 +91,6 @@ void Nds::writeRamf32(bool arm7, uint32_t address, float value, bool tcm) {
 //     m_core->memory.write<uint64_t>(arm7, address, std::bit_cast<uint64_t>(value), tcm);
 // }
 
-void Nds::writeMap(uint32_t sAddress, uint32_t size, const std::vector<uint8_t>& buffer) {
-    m_core->memory.writeMap(sAddress, size, buffer.data());
-}
+// void Nds::writeMap(uint32_t sAddress, uint32_t size, const std::vector<uint8_t>& buffer) {
+//     m_core->memory.writeMap(sAddress, size, buffer.data());
+// }

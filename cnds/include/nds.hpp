@@ -56,7 +56,7 @@ class Nds {
         float readRamf32(bool arm7, uint32_t address, bool tcm);
         double readRamf64(bool arm7, uint32_t address, bool tcm);
 
-        std::vector<uint8_t> readMap(uint32_t sAddress, uint32_t eAddress);
+        // std::vector<uint8_t> readMap(uint32_t sAddress, uint32_t eAddress);
 
         // Write ram methods
         void writeRamu8(bool arm7, uint32_t address, uint8_t value, bool tcm);
@@ -72,7 +72,7 @@ class Nds {
         void writeRamf32(bool arm7, uint32_t address, float value, bool tcm);
         // void writeRamf64(bool arm7, uint32_t address, double value, bool tcm);
 
-        void writeMap(uint32_t sAddress, uint32_t size, const std::vector<uint8_t>& buffer);
+        // void writeMap(uint32_t sAddress, uint32_t size, const std::vector<uint8_t>& buffer);
 
     private:
         static const uint16_t GBA_WIDTH = 240;

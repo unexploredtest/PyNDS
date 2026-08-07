@@ -33,8 +33,8 @@ class Memory:
     # def read_f64(self, arm7: bool, address: int, tcm: bool = False) -> float:
     #     return self._nds.read_ram_f64(arm7, address, tcm)
 
-    def read_map(self, start_address: int, end_address: int) -> list:
-        return self._nds.read_map(start_address, end_address)
+    # def read_map(self, start_address: int, end_address: int) -> list:
+    #     return self._nds.read_map(start_address, end_address)
 
     # Write memory methods
     def write_u8(self, arm7: bool, address: int, value: int, tcm: bool = False) -> None:
@@ -67,5 +67,5 @@ class Memory:
     # def write_f64(self, arm7: bool, address: int, value: float, tcm: bool = False) -> None:
     #     self._nds.write_ram_f64(arm7, address, value, tcm)
 
-    def write_map(self, start_address: int, size: int, data: list) -> None:
-        self._nds.write_map(start_address, size, data)
+    # def write_map(self, start_address: int, size: int, data: list) -> None:
+    #     self._nds.write_map(start_address, size, data)
