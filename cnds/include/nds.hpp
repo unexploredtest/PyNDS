@@ -43,36 +43,36 @@ class Nds {
         void releaseKey(int key);
 
         // Read ram methods
-        uint8_t readRamu8(uint32_t address);
-        uint16_t readRamu16(uint32_t address);
-        uint32_t readRamu32(uint32_t address);
-        uint64_t readRamu64(uint32_t address);
+        uint8_t readRamu8(bool arm7, uint32_t address, bool tcm);
+        uint16_t readRamu16(bool arm7, uint32_t address, bool tcm);
+        uint32_t readRamu32(bool arm7, uint32_t address, bool tcm);
+        uint64_t readRamu64(bool arm7, uint32_t address, bool tcm);
 
-        int8_t readRami8(uint32_t address);
-        int16_t readRami16(uint32_t address);
-        int32_t readRami32(uint32_t address);
-        int64_t readRami64(uint32_t address);
+        int8_t readRami8(bool arm7, uint32_t address, bool tcm);
+        int16_t readRami16(bool arm7, uint32_t address, bool tcm);
+        int32_t readRami32(bool arm7, uint32_t address, bool tcm);
+        int64_t readRami64(bool arm7, uint32_t address, bool tcm);
 
-        float readRamf32(uint32_t address);
-        double readRamf64(uint32_t address);
+        float readRamf32(bool arm7, uint32_t address, bool tcm);
+        double readRamf64(bool arm7, uint32_t address, bool tcm);
 
-        std::vector<uint8_t> readMap(uint32_t sAddress, uint32_t eAddress);
+        // std::vector<uint8_t> readMap(uint32_t sAddress, uint32_t eAddress);
 
         // Write ram methods
-        void writeRamu8(uint32_t address, uint8_t value);
-        void writeRamu16(uint32_t address, uint16_t value);
-        void writeRamu32(uint32_t address, uint32_t value);
-        void writeRamu64(uint32_t address, uint64_t value);
+        void writeRamu8(bool arm7, uint32_t address, uint8_t value, bool tcm);
+        void writeRamu16(bool arm7, uint32_t address, uint16_t value, bool tcm);
+        void writeRamu32(bool arm7, uint32_t address, uint32_t value, bool tcm);
+        // void writeRamu64(bool arm7, uint32_t address, uint64_t value, bool tcm);
 
-        void writeRami8(uint32_t address, int8_t value);
-        void writeRami16(uint32_t address, int16_t value);
-        void writeRami32(uint32_t address, int32_t value);
-        void writeRami64(uint32_t address, int64_t value);
+        void writeRami8(bool arm7, uint32_t address, int8_t value, bool tcm);
+        void writeRami16(bool arm7, uint32_t address, int16_t value, bool tcm);
+        void writeRami32(bool arm7, uint32_t address, int32_t value, bool tcm);
+        // void writeRami64(bool arm7, uint32_t address, int64_t value, bool tcm);
 
-        void writeRamf32(uint32_t address, float value);
-        void writeRamf64(uint32_t address, double value);
+        void writeRamf32(bool arm7, uint32_t address, float value, bool tcm);
+        // void writeRamf64(bool arm7, uint32_t address, double value, bool tcm);
 
-        void writeMap(uint32_t sAddress, uint32_t size, const std::vector<uint8_t>& buffer);
+        // void writeMap(uint32_t sAddress, uint32_t size, const std::vector<uint8_t>& buffer);
 
     private:
         static const uint16_t GBA_WIDTH = 240;

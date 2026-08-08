@@ -37,27 +37,27 @@ NB_MODULE(cnds, m) {
         .def("read_ram_u8", &Nds::readRamu8)
         .def("read_ram_u16", &Nds::readRamu16)
         .def("read_ram_u32", &Nds::readRamu32)
-        .def("read_ram_u64", &Nds::readRamu64)
+        // .def("read_ram_u64", &Nds::readRamu64)
         .def("read_ram_i8", &Nds::readRami8)
         .def("read_ram_i16", &Nds::readRami16)
         .def("read_ram_i32", &Nds::readRami32)
-        .def("read_ram_i64", &Nds::readRami64)
+        // .def("read_ram_i64", &Nds::readRami64)
         .def("read_ram_f32", &Nds::readRamf32)
-        .def("read_ram_f64", &Nds::readRamf64)
-        .def("read_map", &Nds::readMap)
+        // .def("read_ram_f64", &Nds::readRamf64)
+        // .def("read_map", &Nds::readMap)
 
         // Write memory methods
         .def("write_ram_u8", &Nds::writeRamu8)
         .def("write_ram_u16", &Nds::writeRamu16)
         .def("write_ram_u32", &Nds::writeRamu32)
-        .def("write_ram_u64", &Nds::writeRamu64)
+        // .def("write_ram_u64", &Nds::writeRamu64)
         .def("write_ram_i8", &Nds::writeRami8)
         .def("write_ram_i16", &Nds::writeRami16)
         .def("write_ram_i32", &Nds::writeRami32)
-        .def("write_ram_i64", &Nds::writeRami64)
-        .def("write_ram_f32", &Nds::writeRamf32)
-        .def("write_ram_f64", &Nds::writeRamf64)
-        .def("write_map", &Nds::writeMap);
+        // .def("write_ram_i64", &Nds::writeRami64)
+        .def("write_ram_f32", &Nds::writeRamf32);
+        // .def("write_ram_f64", &Nds::writeRamf64)
+        // .def("write_map", &Nds::writeMap);
 
     nb::class_<Config>(m, "config")
         .def_static("set_direct_boot", &Config::setDirectBoot, "Set direct boot mode")
