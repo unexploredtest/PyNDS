@@ -1,5 +1,5 @@
 ## PyNDS
-A Python interface for [NooDS](https://github.com/Hydr8gon/NooDS), a Nintendo DS emulator. Intended for reinforcement learning and bots.
+A Python interface for [NooDS](https://github.com/Hydr8gon/NooDS), a Nintendo DS emulator. Intended for reinforcement learning and bots. Written for my reinforcement learning project.
 
 Inspired by [PyBoy](https://github.com/Baekalfen/PyBoy).
 

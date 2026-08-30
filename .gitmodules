@@ -1,7 +1,9 @@
+# The emulator
 [submodule "externals/NooDS"]
 	path = externals/NooDS
 	url = https://github.com/unexploredtest/NooDS.git
 	branch = pynds
+# Binding library
 [submodule "externals/nanobind"]
 	path = externals/nanobind
 	url = https://github.com/wjakob/nanobind

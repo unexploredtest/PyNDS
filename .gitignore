@@ -19,3 +19,4 @@ coverage.xml
 s_tests
 treasures
 .vscode/
+test/
